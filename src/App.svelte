@@ -7,7 +7,7 @@
 <main>
   <h1>Embedding Tableau in a Svelte app - test</h1>
   <p>
-    Using the <a href="https://learn.svelte.dev/">Embedding API</a> to embed public Tableau vizzes 
+    Using the <a href="https://help.tableau.com/current/api/embedding_api/en-us/index.html">Tableau Embedding API</a> to embed public Tableau vizzes 
     in an app and interact with them.
   </p>
   <div style="width:800px; height:700px;">
