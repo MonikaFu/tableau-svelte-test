@@ -1,26 +1,46 @@
 <script>
 
   import { TableauViz, TableauEventType } from '@tableau/embedding-api';
+  import { onMount } from 'svelte';
+    import { on } from 'svelte/events';
+
+  onMount(async () => {
+    const viz = document.querySelector("#tableauViz");
+
+    viz.src = "https://public.tableau.com/views/RegionalSampleWorkbook/College";
+    viz.addEventListener(TableauEventType.ParameterChanged, handleFilterChange);
+
+    /*  Methods */
+    
+    function handleFilterChange() {
+      alert('Mark(s) selected!');
+      // code to handle the mark selection goes here
+    }
+
+    function handleFirstInteractive(e) {
+            console.log("---handleFirstInteractive---");
+            console.log("Viz Embedding Successful!");
+        }
+  }
+)
+  
 
 </script>
 
 <main>
-  <h1>Embedding Tableau in a Svelte app - test</h1>
+  <h1 id="title">Embedding Tableau in a Svelte app - test</h1>
   <p>
     Using the <a href="https://help.tableau.com/current/api/embedding_api/en-us/index.html">Tableau Embedding API</a> to embed public Tableau vizzes 
     in an app and interact with them.
   </p>
-  <div style="width:800px; height:700px;">
-
-    <!-- Initialization of the Tableau visualization via web component. See more properties here:
-    https://help.tableau.com/current/api/embedding_api/en-us/docs/embedding_api_configure.html -->
-    <tableau-viz id="tableauViz" src="https://public.tableau.com/views/RegionalSampleWorkbook/Storms"
-        toolbar="bottom" hide-tabs>
-    </tableau-viz>
+  <div style="width:900px; height:700px;">
+    <tableau-viz id="tableauViz"></tableau-viz>
   </div>
-  <div style="width:800px; height:700px;">
+  <div style="width:900px; height:700px;">
     <tableau-viz id="tableauViz2" src="https://public.tableau.com/views/RegionalSampleWorkbook/College"
-        toolbar="bottom" hide-tabs>
+       toolbar="bottom" hide-tabs>
+        <viz-filter field="College" value="Business"></viz-filter>
+
     </tableau-viz>
   </div>
 </main>
